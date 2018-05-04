@@ -46,7 +46,7 @@ describe('Projects', () => {
     describe('without authorization', () => {
       it('should return 400 status', (done) => {
         request(app)
-          .patch(`/projects/${accessibleProjectId}`)
+          .patch(`/api/projects/${accessibleProjectId}`)
           .end((err, res) => {
             expect(res.statusCode).to.equal(400);
             done();
@@ -57,7 +57,7 @@ describe('Projects', () => {
     describe('with authorization', () => {
       it('should return a 200 status, update the project, and return the updated object', (done) => {
         request(app)
-          .delete(`/projects/${accessibleProjectId}`)
+          .delete(`/api/projects/${accessibleProjectId}`)
           .set('Authorization', `Bearer ${token}`)
           .end((err, res) => {
             expect(res.statusCode).to.equal(200);
@@ -71,7 +71,7 @@ describe('Projects', () => {
 
       it('should return a 403 status error on inaccessible projects', (done) => {
         request(app)
-          .delete(`/projects/${inaccessibleProjectId}`)
+          .delete(`/api/projects/${inaccessibleProjectId}`)
           .set('Authorization', `Bearer ${token}`)
           .end((err, res) => {
             expect(res.statusCode).to.equal(403);
@@ -81,7 +81,7 @@ describe('Projects', () => {
 
       it('should return a 404 status error on non existing projects', (done) => {
         request(app)
-          .delete('/projects/9999999')
+          .delete('/api/projects/9999999')
           .set('Authorization', `Bearer ${token}`)
           .end((err, res) => {
             expect(res.statusCode).to.equal(404);

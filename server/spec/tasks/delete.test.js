@@ -61,7 +61,7 @@ describe('Tasks', () => {
     describe('without authorization', () => {
       it('should return 400 status', (done) => {
         request(app)
-          .delete(`/tasks/${taskId}`)
+          .delete(`/api/tasks/${taskId}`)
           .end((err, res) => {
             expect(res.statusCode).to.equal(400);
             done();
@@ -72,7 +72,7 @@ describe('Tasks', () => {
     describe('with authorization', () => {
       it('should return 200 status and only the projects associate with this users token', (done) => {
         request(app)
-          .delete(`/tasks/${taskId}`)
+          .delete(`/api/tasks/${taskId}`)
           .set('Authorization', `Bearer ${token}`)
           .end((err, res) => {
             expect(res.statusCode).to.equal(200);
@@ -86,7 +86,7 @@ describe('Tasks', () => {
 
       it('should return 403 on projects that the user does not have acccess to', (done) => {
         request(app)
-          .delete(`/tasks/${inaccessibleTaskId}`)
+          .delete(`/api/tasks/${inaccessibleTaskId}`)
           .set('Authorization', `Bearer ${token}`)
           .end((err, res) => {
             expect(res.statusCode).to.equal(403);
@@ -96,7 +96,7 @@ describe('Tasks', () => {
 
       it('should return 404 on tasks that do not exist', (done) => {
         request(app)
-          .delete(`/tasks/${999999}`)
+          .delete(`/api/tasks/${999999}`)
           .set('Authorization', `Bearer ${token}`)
           .end((err, res) => {
             expect(res.statusCode).to.equal(404);

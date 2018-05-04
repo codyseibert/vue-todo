@@ -12,7 +12,7 @@ describe('Authentication', () => {
   describe('register', () => {
     it('should return 200 status and have created the user', (done) => {
       request(app)
-        .post('/register')
+        .post('/api/auth/register')
         .send({
           email: 'yolo@gmail.com',
           password: '123456',

@@ -4,15 +4,16 @@ const cors = require('cors');
 const morgan = require('morgan');
 const { sequelize } = require('./models');
 const config = require('./config/config');
+const router = require('./router');
 
 const app = express();
 app.use(morgan('combined'));
 app.use(bodyParser.json());
 app.use(cors());
 
-app.use(express.static('../client/public'));
+app.use(express.static('../client/dist'));
 
-require('./routes')(app);
+app.use('/api', router);
 
 sequelize.sync({ force: false })
   .then(() => {

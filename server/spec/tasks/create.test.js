@@ -45,7 +45,7 @@ describe('Tasks', () => {
     describe('without authorization', () => {
       it('should return 400 status', (done) => {
         request(app)
-          .post(`/projects/${accessibleProjectId}/tasks`)
+          .post(`/api/projects/${accessibleProjectId}/tasks`)
           .end((err, res) => {
             expect(res.statusCode).to.equal(400);
             done();
@@ -56,7 +56,7 @@ describe('Tasks', () => {
     describe('with authorization', () => {
       it('should return 200 status and created object', (done) => {
         request(app)
-          .post(`/projects/${accessibleProjectId}/tasks`)
+          .post(`/api/projects/${accessibleProjectId}/tasks`)
           .set('Authorization', `Bearer ${token}`)
           .send({
             description: 'yolo',
@@ -73,7 +73,7 @@ describe('Tasks', () => {
 
       it('should return 403 when trying to create a task on an inaccessible project', (done) => {
         request(app)
-          .post(`/projects/${inaccessibleProjectId}/tasks`)
+          .post(`/api/projects/${inaccessibleProjectId}/tasks`)
           .set('Authorization', `Bearer ${token}`)
           .send({
             description: 'yolo',
@@ -86,7 +86,7 @@ describe('Tasks', () => {
 
       it('should return 404 when trying to create a task on an non-existing project', (done) => {
         request(app)
-          .post(`/projects/${9999999}/tasks`)
+          .post(`/api/projects/${9999999}/tasks`)
           .set('Authorization', `Bearer ${token}`)
           .send({
             description: 'yolo',

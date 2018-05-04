@@ -20,7 +20,7 @@ describe('Projects', () => {
     describe('without authorization', () => {
       it('should return 400 status', (done) => {
         request(app)
-          .get('/projects')
+          .get('/api/projects')
           .end((err, res) => {
             expect(res.statusCode).to.equal(400);
             done();
@@ -48,7 +48,7 @@ describe('Projects', () => {
 
       it('should return 200 status and only the projects associate with this users token', (done) => {
         request(app)
-          .get('/projects')
+          .get('/api/projects')
           .set('Authorization', `Bearer ${token}`)
           .end((err, res) => {
             expect(res.statusCode).to.equal(200);

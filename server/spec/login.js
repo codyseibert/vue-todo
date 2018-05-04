@@ -5,7 +5,7 @@ const app = require('../src/app');
 function login() {
   return new Promise((resolve, reject) => {
     request(app)
-      .post('/login')
+      .post('/api/auth/login')
       .set('Content-Type', 'application/json')
       .send({
         email: 'testing@gmail.com',

@@ -50,7 +50,7 @@ describe('Tasks', () => {
     describe('without authorization', () => {
       it('should return 400 status', (done) => {
         request(app)
-          .get(`/projects/${accessibleProjectId}/tasks`)
+          .get(`/api/projects/${accessibleProjectId}/tasks`)
           .end((err, res) => {
             expect(res.statusCode).to.equal(400);
             done();
@@ -61,7 +61,7 @@ describe('Tasks', () => {
     describe('with authorization', () => {
       it('should return 200 status and only the projects associate with this users token', (done) => {
         request(app)
-          .get(`/projects/${accessibleProjectId}/tasks`)
+          .get(`/api/projects/${accessibleProjectId}/tasks`)
           .set('Authorization', `Bearer ${token}`)
           .end((err, res) => {
             expect(res.statusCode).to.equal(200);
@@ -76,7 +76,7 @@ describe('Tasks', () => {
 
       it('should return 403 on projects that the user does not have acccess to', (done) => {
         request(app)
-          .get(`/projects/${inaccessibleProjectId}/tasks`)
+          .get(`/api/projects/${inaccessibleProjectId}/tasks`)
           .set('Authorization', `Bearer ${token}`)
           .end((err, res) => {
             expect(res.statusCode).to.equal(403);
@@ -86,7 +86,7 @@ describe('Tasks', () => {
 
       it('should return 404 on projects that do not exist', (done) => {
         request(app)
-          .get(`/projects/${9999999}/tasks`)
+          .get(`/api/projects/${9999999}/tasks`)
           .set('Authorization', `Bearer ${token}`)
           .end((err, res) => {
             expect(res.statusCode).to.equal(404);

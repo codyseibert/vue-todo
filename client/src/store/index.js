@@ -10,7 +10,7 @@ Vue.use(Vuex);
 export default new Vuex.Store({
   strict: true,
   state: {
-    baseApiUrl: 'http://localhost:8081/',
+    baseApiUrl: '/api',
   },
   modules: {
     projects,

@@ -12,7 +12,7 @@ describe('Authentication', () => {
   describe('login', () => {
     it('should return 200 status, the user, and token', (done) => {
       request(app)
-        .post('/login')
+        .post('/api/auth/login')
         .send({
           email: 'testing@gmail.com',
           password: '123456',

@@ -23,7 +23,7 @@ describe('Projects', () => {
     describe('without authorization', () => {
       it('should return 400 status', (done) => {
         request(app)
-          .post('/projects')
+          .post('/api/projects')
           .end((err, res) => {
             expect(res.statusCode).to.equal(400);
             done();
@@ -34,7 +34,7 @@ describe('Projects', () => {
     describe('with authorization', () => {
       it('should return 200 status and created object', (done) => {
         request(app)
-          .post('/projects')
+          .post('/api/projects')
           .set('Authorization', `Bearer ${token}`)
           .send({
             title: 'yolo',

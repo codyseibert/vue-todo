@@ -58,7 +58,7 @@ describe('Tasks', () => {
     describe('without authorization', () => {
       it('should return 400 status', (done) => {
         request(app)
-          .patch(`/tasks/${taskId}`)
+          .patch(`/api/tasks/${taskId}`)
           .end((err, res) => {
             expect(res.statusCode).to.equal(400);
             done();
@@ -69,7 +69,7 @@ describe('Tasks', () => {
     describe('with authorization', () => {
       it('should return 200 status and only the projects associate with this users token', (done) => {
         request(app)
-          .patch(`/tasks/${taskId}`)
+          .patch(`/api/tasks/${taskId}`)
           .set('Authorization', `Bearer ${token}`)
           .send({
             description: 'glhf',
@@ -86,7 +86,7 @@ describe('Tasks', () => {
 
       it('should return 403 on projects that the user does not have acccess to', (done) => {
         request(app)
-          .patch(`/tasks/${inaccessibleTaskId}`)
+          .patch(`/api/tasks/${inaccessibleTaskId}`)
           .set('Authorization', `Bearer ${token}`)
           .end((err, res) => {
             expect(res.statusCode).to.equal(403);
@@ -96,7 +96,7 @@ describe('Tasks', () => {
 
       it('should return 404 on tasks that do not exist', (done) => {
         request(app)
-          .patch(`/tasks/${999999}`)
+          .patch(`/api/tasks/${999999}`)
           .set('Authorization', `Bearer ${token}`)
           .end((err, res) => {
             expect(res.statusCode).to.equal(404);

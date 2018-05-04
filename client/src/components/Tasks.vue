@@ -80,6 +80,7 @@ export default {
     },
     onCheckClicked(task) {
       this.toggleCompleted(task);
+      this.updateTask(task);
     },
   },
   mounted() {

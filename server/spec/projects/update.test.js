@@ -20,7 +20,7 @@ describe('Projects', () => {
     describe('without authorization', () => {
       it('should return 400 status', (done) => {
         request(app)
-          .patch('/projects/2')
+          .patch('/api/projects/2')
           .end((err, res) => {
             expect(res.statusCode).to.equal(400);
             done();
@@ -51,7 +51,7 @@ describe('Projects', () => {
 
       it('should return a 200 status, update the project, and return the updated object', (done) => {
         request(app)
-          .patch(`/projects/${accessibleProjectId}`)
+          .patch(`/api/projects/${accessibleProjectId}`)
           .set('Authorization', `Bearer ${token}`)
           .send({
             title: 'gg',
@@ -68,7 +68,7 @@ describe('Projects', () => {
 
       it('should return a 403 status error', (done) => {
         request(app)
-          .patch(`/projects/${inaccessibleProjectId}`)
+          .patch(`/api/projects/${inaccessibleProjectId}`)
           .set('Authorization', `Bearer ${token}`)
           .send({
             title: 'gg',
@@ -81,7 +81,7 @@ describe('Projects', () => {
 
       it('should return a 404 status error', (done) => {
         request(app)
-          .patch('/projects/999999999')
+          .patch('/api/projects/999999999')
           .set('Authorization', `Bearer ${token}`)
           .send({
             title: 'gg',

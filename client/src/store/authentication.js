@@ -15,7 +15,7 @@ export default {
   actions: {
     login({ commit, state }) {
       commit('setLoginError', null);
-      HTTP().post('login', {
+      HTTP().post('/auth/login', {
         email: state.email,
         password: state.password,
       })
@@ -29,7 +29,7 @@ export default {
     },
     register({ commit, state }) {
       commit('setRegistrationError', null);
-      HTTP().post('register', {
+      HTTP().post('/auth/register', {
         email: state.registrationEmail,
         password: state.registrationPassword,
       })

@@ -7,8 +7,8 @@ module.exports = {
     user: process.env.DB_USER || 'vuetodo',
     password: process.env.DB_PASS || 'vuetodo',
     options: {
-      dialect: process.env.DIALECT || 'sqlite',
-      host: process.env.HOST || 'localhost',
+      dialect: process.env.DB_DIALECT || 'sqlite',
+      host: process.env.DB_HOST || 'localhost',
       storage: path.resolve(__dirname, '../../vuetodo.sqlite'),
     },
   },

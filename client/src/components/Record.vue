@@ -8,30 +8,35 @@
       xs9
       class="text-xs-left"
     >
-      <v-icon
-        class="checkbox mr-2"
-        v-if="isCheckable"
-        @click="onCheckClicked"
-      > {{ completed ? 'check_box' : 'check_box_outline_blank' }}
-      </v-icon>
+      <v-layout row wrap>
+        <v-flex xs1 v-if="isCheckable">
+          <v-icon
+            class="checkbox mr-2"
+            @click="onCheckClicked"
+          > {{ completed ? 'check_box' : 'check_box_outline_blank' }}
+          </v-icon>
+        </v-flex>
 
-      <span
-        class="text"
-        :class="{ 'selectable': isSelectable }"
-        @click="onSelect"
-        v-if="!isEditMode"
-      > {{text}}
-      </span>
+        <v-flex xs11>
+          <span
+            class="text"
+            :class="{ 'selectable': isSelectable }"
+            @click="onSelect"
+            v-if="!isEditMode"
+          > {{text}}
+          </span>
 
-      <v-text-field
-        hide-details
-        v-if="isEditMode"
-        :value="text"
-        autofocus
-        @keyup.enter="onUpdate"
-        @input="onInput"
-      >
-      </v-text-field>
+          <v-text-field
+            hide-details
+            v-if="isEditMode"
+            :value="text"
+            autofocus
+            @keyup.enter="onUpdate"
+            @input="onInput"
+          >
+          </v-text-field>
+        </v-flex>
+      </v-layout>
     </v-flex>
 
     <v-flex xs3 class="text-xs-right">
