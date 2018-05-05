@@ -1,8 +1,8 @@
-const app = require('../../src/app');
+const app = require('../../api/app');
 const chai = require('chai');
 const request = require('supertest');
 const login = require('../login');
-const { Project } = require('../../src/models');
+const { Project } = require('../../models');
 
 const { expect } = chai;
 const {

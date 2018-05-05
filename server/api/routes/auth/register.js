@@ -1,4 +1,4 @@
-const { User } = require('../../models');
+const { User } = require('../../../models');
 const jwtSign = require('./helpers/jwtSign');
 
 module.exports = async (req, res) => {

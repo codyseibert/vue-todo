@@ -1,5 +1,4 @@
 const jwt = require('jsonwebtoken');
-const config = require('../config/config');
 
 module.exports = async (req, res, next) => {
   if (!req.headers.authorization) {
@@ -11,7 +10,7 @@ module.exports = async (req, res, next) => {
   let decoded;
   try {
     const token = req.headers.authorization.split(' ').slice(-1)[0];
-    decoded = jwt.verify(token, config.authentication.jwtSecret);
+    decoded = jwt.verify(token, process.env.JWT_SECRET || 'testing');
   } catch (err) {
     return res.status(500).send({
       error: 'error parsing the JWT',

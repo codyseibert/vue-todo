@@ -1,4 +1,4 @@
-const { sequelize, User } = require('../src/models');
+const { sequelize, User } = require('../models');
 
 const { before } = global;
 

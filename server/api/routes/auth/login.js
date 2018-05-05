@@ -1,4 +1,4 @@
-const { User } = require('../../models');
+const { User } = require('../../../models');
 const jwtSign = require('./helpers/jwtSign');
 
 module.exports = async (req, res) => {
@@ -32,6 +32,7 @@ module.exports = async (req, res) => {
       token: jwtSign(userJson),
     });
   } catch (err) {
+    console.error(err);
     res.status(500).send({
       error: 'An error has occured trying to log in',
     });
