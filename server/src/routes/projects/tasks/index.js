@@ -2,12 +2,10 @@ const express = require('express');
 
 const find = require('./find');
 const create = require('./create');
-const isAuthenticated = require('../../../policies/isAuthenticated');
-const ownsProject = require('../../../policies/ownsProject');
 
 const router = express.Router({ mergeParams: true });
 
-router.get('/', isAuthenticated, ownsProject, find);
-router.post('/', isAuthenticated, ownsProject, create);
+router.get('/', find);
+router.post('/', create);
 
 module.exports = router;

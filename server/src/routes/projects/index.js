@@ -3,17 +3,16 @@ const find = require('./find');
 const create = require('./create');
 const update = require('./update');
 const destroy = require('./destroy');
-const isAuthenticated = require('../../policies/isAuthenticated');
 const ownsProject = require('../../policies/ownsProject');
 const tasksRouter = require('./tasks');
 
 const router = express.Router();
 
-router.get('/', isAuthenticated, find);
-router.post('/', isAuthenticated, create);
-router.patch('/:projectId', isAuthenticated, ownsProject, update);
-router.delete('/:projectId', isAuthenticated, ownsProject, destroy);
-router.use('/:projectId/tasks', tasksRouter);
+router.get('/', find);
+router.post('/', create);
+router.patch('/:projectId', ownsProject, update);
+router.delete('/:projectId', ownsProject, destroy);
+router.use('/:projectId/tasks', ownsProject, tasksRouter);
 
 module.exports = router;
 
