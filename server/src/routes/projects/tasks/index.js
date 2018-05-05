@@ -3,7 +3,7 @@ const express = require('express');
 const find = require('./find');
 const create = require('./create');
 const isAuthenticated = require('../../../policies/isAuthenticated');
-const ownsProject = require('../../projects/policy/ownsProject');
+const ownsProject = require('../../../policies/ownsProject');
 
 const router = express.Router({ mergeParams: true });
 

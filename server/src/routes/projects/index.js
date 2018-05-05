@@ -4,7 +4,7 @@ const create = require('./create');
 const update = require('./update');
 const destroy = require('./destroy');
 const isAuthenticated = require('../../policies/isAuthenticated');
-const ownsProject = require('./policy/ownsProject');
+const ownsProject = require('../../policies/ownsProject');
 const tasksRouter = require('./tasks');
 
 const router = express.Router();

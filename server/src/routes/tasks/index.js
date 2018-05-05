@@ -3,7 +3,7 @@ const express = require('express');
 const update = require('./update');
 const destroy = require('./destroy');
 const isAuthenticated = require('../../policies/isAuthenticated');
-const ownsTasks = require('./ownsTask');
+const ownsTasks = require('../../policies/ownsTask');
 
 const router = express.Router();
 
