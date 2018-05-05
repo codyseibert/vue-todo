@@ -3,9 +3,8 @@ const {
   User,
   Project,
   Task,
-} = require('../src/models');
+} = require('..//models');
 
-const Promise = require('bluebird');
 const users = require('./users.json');
 const projects = require('./projects.json');
 const tasks = require('./tasks.json');

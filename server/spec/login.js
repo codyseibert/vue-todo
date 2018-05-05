@@ -1,6 +1,6 @@
 /* eslint-disable import/no-extraneous-dependencies */
 const request = require('supertest');
-const app = require('../api/app');
+const app = require('../app');
 
 function login() {
   return new Promise((resolve, reject) => {

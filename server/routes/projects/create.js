@@ -1,10 +1,10 @@
-const { Project } = require('../../../models');
+const { Project } = require('../../models');
 
 module.exports = async (req, res) => {
   try {
-    const UserId = req.user.id;
+    const userId = req.user.id;
     const project = await Project.create({
-      UserId,
+      userId,
       ...req.body,
     });
     res.json(project);

@@ -7,7 +7,7 @@
           label="Email"
           :value="email"
           @input="setEmail"
-          placeholder="email"
+          placeholder="Email"
         ></v-text-field>
         <v-text-field
           label="Password"
@@ -15,7 +15,7 @@
           autocomplete="new-password"
           :value="password"
           @input="setPassword"
-          placeholder="password"
+          placeholder="Password"
         ></v-text-field>
         <v-btn @click="login" color="green" dark>
           <v-icon>fingerprint</v-icon>

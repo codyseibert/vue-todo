@@ -1,12 +1,12 @@
-const { Task } = require('../../../../models');
+const { Task } = require('../../../models');
 
 module.exports = async (req, res) => {
   try {
-    const UserId = req.user.id;
-    const ProjectId = parseInt(req.params.projectId, 10);
+    const userId = req.user.id;
+    const projectId = parseInt(req.params.projectId, 10);
     const task = await Task.create({
-      UserId,
-      ProjectId,
+      userId,
+      projectId,
       ...req.body,
     });
     res.json(task);

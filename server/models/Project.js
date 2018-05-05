@@ -1,11 +1,11 @@
 module.exports = (sequelize, DataTypes) => {
-  const Project = sequelize.define('Project', {
+  const Project = sequelize.define('project', {
     title: DataTypes.STRING,
   });
 
   Project.associate = (models) => {
-    Project.hasMany(models.Task);
-    Project.belongsTo(models.User);
+    Project.hasMany(models.task);
+    Project.belongsTo(models.user);
   };
 
   return Project;

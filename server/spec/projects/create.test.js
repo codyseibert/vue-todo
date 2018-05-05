@@ -1,4 +1,4 @@
-const app = require('../../api/app');
+const app = require('../../app');
 const chai = require('chai');
 const request = require('supertest');
 const login = require('../login');
@@ -43,7 +43,7 @@ describe('Projects', () => {
             expect(res.statusCode).to.equal(200);
             expect(res.body).to.include({
               title: 'yolo',
-              UserId: 1,
+              userId: 1,
             });
             done();
           });

@@ -1,11 +1,11 @@
-const { Task } = require('../../../../models');
+const { Task } = require('../../../models');
 
 module.exports = async (req, res) => {
   try {
-    const ProjectId = parseInt(req.params.projectId, 10);
+    const projectId = parseInt(req.params.projectId, 10);
     const tasks = await Task.findAll({
       where: {
-        ProjectId,
+        projectId,
       },
     });
     res.send(tasks);

@@ -1,4 +1,4 @@
-const app = require('../../api/app');
+const app = require('../../app');
 const chai = require('chai');
 const request = require('supertest');
 const login = require('../login');
@@ -31,17 +31,17 @@ describe('Tasks', () => {
     }).then(() => {
       return Project.create({
         title: 'whatsupdawg',
-        UserId: 1,
+        userId: 1,
       }).then((project) => { accessibleProjectId = project.id; });
     }).then(() => {
       return Project.create({
         title: 'nothingmuchdawg',
-        UserId: null,
+        userId: null,
       }).then((project) => { inaccessibleProjectId = project.id; });
     }).then(() => {
       return Task.create({
         description: 'hello world',
-        ProjectId: accessibleProjectId,
+        projectId: accessibleProjectId,
       });
     });
   });
@@ -68,7 +68,7 @@ describe('Tasks', () => {
             expect(res.body.length).to.equal(1);
             expect(res.body[0]).to.include({
               description: 'hello world',
-              ProjectId: accessibleProjectId,
+              projectId: accessibleProjectId,
             });
             done();
           });

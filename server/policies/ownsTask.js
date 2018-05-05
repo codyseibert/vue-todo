@@ -1,9 +1,9 @@
-const { Task } = require('../../models');
+const { Task } = require('../models');
 
 module.exports = async (req, res, next) => {
   try {
     const id = parseInt(req.params.taskId, 10);
-    const UserId = req.user.id;
+    const userId = req.user.id;
     const task = await Task.findOne({
       where: {
         id,
@@ -15,7 +15,7 @@ module.exports = async (req, res, next) => {
       });
     }
     const project = await task.getProject();
-    if (project.UserId !== UserId) {
+    if (project.userId !== userId) {
       return res.status(403).send({
         error: 'invalid access',
       });

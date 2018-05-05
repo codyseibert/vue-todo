@@ -1,8 +1,8 @@
 const express = require('express');
-const authRouter = require('./routes/auth');
-const projectsRouter = require('./routes/projects');
-const tasksRouter = require('./routes/tasks');
-const isAuthenticated = require('./policies/isAuthenticated');
+const authRouter = require('./auth');
+const projectsRouter = require('./projects');
+const tasksRouter = require('./tasks');
+const isAuthenticated = require('../policies/isAuthenticated');
 
 const router = express.Router();
 router.use('/auth', authRouter);

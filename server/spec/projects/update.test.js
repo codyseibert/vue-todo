@@ -1,4 +1,4 @@
-const app = require('../../api/app');
+const app = require('../../app');
 const chai = require('chai');
 const request = require('supertest');
 const login = require('../login');
@@ -39,12 +39,12 @@ describe('Projects', () => {
         }).then(() => {
           return Project.create({
             title: 'whatsupdawg',
-            UserId: 1,
+            userId: 1,
           }).then((project) => { accessibleProjectId = project.id; });
         }).then(() => {
           return Project.create({
             title: 'nothingmuchdawg',
-            UserId: null,
+            userId: null,
           }).then((project) => { inaccessibleProjectId = project.id; });
         });
       });
@@ -60,7 +60,7 @@ describe('Projects', () => {
             expect(res.statusCode).to.equal(200);
             expect(res.body).to.include({
               title: 'gg',
-              UserId: 1,
+              userId: 1,
             });
             done();
           });
