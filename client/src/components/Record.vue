@@ -12,7 +12,7 @@
         <v-flex xs1 v-if="isCheckable">
           <v-icon
             class="checkbox mr-2"
-            @click="onCheckClicked"
+            @click="$emit('onCheckClicked')"
           > {{ completed ? 'check_box' : 'check_box_outline_blank' }}
           </v-icon>
         </v-flex>
@@ -21,7 +21,7 @@
           <span
             class="text"
             :class="{ 'selectable': isSelectable }"
-            @click="onSelect"
+            @click="$emit('onSelect')"
             v-if="!isEditMode"
           > {{text}}
           </span>
@@ -31,8 +31,8 @@
             v-if="isEditMode"
             :value="text"
             autofocus
-            @keyup.enter="onUpdate"
-            @input="onInput"
+            @keyup.enter="$emit('onUpdate')"
+            @input="$emit('onInput', $event)"
           >
           </v-text-field>
         </v-flex>
@@ -43,20 +43,20 @@
       <v-icon
         class="mr-2 edit"
         v-if="!isEditMode"
-        @click="onEdit"
+        @click="$emit('onEdit')"
       >edit
       </v-icon>
 
       <v-icon
         class="mr-2 edit"
         v-if="isEditMode"
-        @click="onUpdate"
+        @click="$emit('onUpdate')"
       >check
       </v-icon>
 
       <v-icon
         class="mr-2 delete"
-        @click="onDelete"
+        @click="$emit('onDelete')"
       >delete
       </v-icon>
     </v-flex>
@@ -73,26 +73,6 @@ export default {
     'isCheckable',
     'completed',
   ],
-  methods: {
-    onSelect() {
-      this.$emit('onSelect');
-    },
-    onCheckClicked() {
-      this.$emit('onCheckClicked');
-    },
-    onUpdate() {
-      this.$emit('onUpdate');
-    },
-    onInput(text) {
-      this.$emit('onInput', text);
-    },
-    onDelete() {
-      this.$emit('onDelete');
-    },
-    onEdit() {
-      this.$emit('onEdit');
-    },
-  },
 };
 </script>
 

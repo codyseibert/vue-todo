@@ -2,17 +2,17 @@
   <v-layout row wrap class="mt-4">
     <v-flex xs8 class="pt-2">
       <v-text-field
-        @input="onInput"
+        @input="$emit('onInput', $event)"
         hide-details
         :placeholder="placeholder"
-        @keyup.enter="onCreate"
+        @keyup.enter="$emit('onCreate')"
         :value="value"
       >
       </v-text-field>
     </v-flex>
     <v-flex xs4>
       <v-btn
-        @click="onCreate"
+        @click="$emit('onCreate')"
         :dark="!!value"
         :disabled="!value"
         color="green"
@@ -32,14 +32,6 @@ export default {
     'input',
     'value',
   ],
-  methods: {
-    onCreate() {
-      this.$emit('onCreate');
-    },
-    onInput(text) {
-      this.$emit('onInput', text);
-    },
-  },
 };
 </script>
 

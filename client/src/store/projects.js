@@ -14,7 +14,7 @@ export default {
   },
   actions: {
     fetchProjects({ commit }) {
-      HTTP().get('projects')
+      return HTTP().get('projects')
         .then(({ data }) => {
           commit('setProjects', data);
         })
@@ -23,7 +23,7 @@ export default {
         });
     },
     updateProject({ commit }, project) {
-      HTTP().patch(`projects/${project.id}`, project)
+      return HTTP().patch(`projects/${project.id}`, project)
         .then(() => {
           commit('setProjectEditMode', {
             project,
@@ -35,7 +35,7 @@ export default {
         });
     },
     deleteProject({ commit, state }) {
-      HTTP().delete(`projects/${state.projectToDeleteId}`)
+      return HTTP().delete(`projects/${state.projectToDeleteId}`)
         .then(() => {
           commit('deleteProject', state.projectToDeleteId);
         })
@@ -45,7 +45,7 @@ export default {
     },
     createProject({ commit, state }) {
       commit('setCreateProjectError', false);
-      HTTP().post('projects', {
+      return HTTP().post('projects', {
         title: state.title,
       })
         .then(({ data }) => {
@@ -54,6 +54,12 @@ export default {
         .catch(() => {
           commit('setCreateProjectError', true);
         });
+    },
+    selectFirstProject({ dispatch, commit, state }) {
+      commit('selectFirstProject');
+      if (state.selectedProjectId) {
+        dispatch('tasks/fetchTasks', null, { root: true });
+      }
     },
   },
   getters: {

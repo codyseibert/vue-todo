@@ -1,36 +1,21 @@
 <template>
-  <v-container>
-    <v-layout row wrap>
-      <v-flex xs6 offset-xs3>
-        <h1>Registration</h1>
-        <v-text-field
-          label="Email"
-          :value="registrationEmail"
-          @input="setRegistrationEmail"
-          placeholder="Email"
-        ></v-text-field>
-        <v-text-field
-          label="Password"
-          type="password"
-          autocomplete="new-password"
-          :value="registrationPassword"
-          @input="setRegistrationPassword"
-          placeholder="Password"
-        ></v-text-field>
-        <v-btn @click="register" color="green" dark>
-          <v-icon>account_circle</v-icon>
-          <span class="ml-2">Register</span>
-        </v-btn>
-        <v-alert class="mt-4" type="error" :value="registrationError">
-          {{registrationError}}
-        </v-alert>
-      </v-flex>
-    </v-layout>
-  </v-container>
+  <CredentialsForm
+    title="Registration"
+    icon="account_circle"
+    action="Register"
+    :email="registrationEmail"
+    :password="registrationPassword"
+    :error="registrationError"
+    @onEmailInput="setRegistrationEmail"
+    @onPasswordInput="setRegistrationPassword"
+    @onAction="register"
+  >
+  </CredentialsForm>
 </template>
 
 <script>
 import { mapState, mapMutations, mapActions } from 'vuex';
+import CredentialsForm from '@/components/CredentialsForm.vue';
 
 export default {
   name: 'login',
@@ -49,6 +34,9 @@ export default {
     ...mapActions('authentication', [
       'register',
     ]),
+  },
+  components: {
+    CredentialsForm,
   },
 };
 </script>

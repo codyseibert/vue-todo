@@ -7,8 +7,8 @@
       </v-card-title>
       <v-card-actions>
         <v-spacer></v-spacer>
-        <v-btn @click="onCancel" color="primary" flat>Cancel</v-btn>
-        <v-btn @click="onConfirm" color="error" flat>Yes</v-btn>
+        <v-btn @click="$emit('onCancel')" color="primary" flat>Cancel</v-btn>
+        <v-btn @click="$emit('onConfirm')" color="error" flat>Yes</v-btn>
       </v-card-actions>
     </v-card>
   </v-dialog>
@@ -20,14 +20,6 @@ export default {
     'isVisible',
     'name',
   ],
-  methods: {
-    onCancel() {
-      this.$emit('onCancel');
-    },
-    onConfirm() {
-      this.$emit('onConfirm');
-    },
-  },
 };
 </script>
 

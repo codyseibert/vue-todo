@@ -15,12 +15,14 @@ export default {
   actions: {
     login({ commit, state }) {
       commit('setLoginError', null);
-      HTTP().post('/auth/login', {
+      return HTTP().post('/auth/login', {
         email: state.email,
         password: state.password,
       })
         .then(({ data }) => {
           commit('setToken', data.token);
+          commit('tasks/setTasks', [], { root: true });
+          commit('projects/setSelectedProjectId', null, { root: true });
           router.push('/');
         })
         .catch(() => {
@@ -29,12 +31,14 @@ export default {
     },
     register({ commit, state }) {
       commit('setRegistrationError', null);
-      HTTP().post('/auth/register', {
+      return HTTP().post('/auth/register', {
         email: state.registrationEmail,
         password: state.registrationPassword,
       })
         .then(({ data }) => {
           commit('setToken', data.token);
+          commit('tasks/setTasks', [], { root: true });
+          commit('projects/setSelectedProjectId', null, { root: true });
           router.push('/');
         })
         .catch(() => {

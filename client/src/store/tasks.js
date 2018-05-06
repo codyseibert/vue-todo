@@ -11,7 +11,7 @@ export default {
   },
   actions: {
     fetchTasks({ commit, rootState }) {
-      HTTP().get(`projects/${rootState.projects.selectedProjectId}/tasks`)
+      return HTTP().get(`projects/${rootState.projects.selectedProjectId}/tasks`)
         .then(({ data }) => {
           commit('setTasks', data);
         })
@@ -20,7 +20,7 @@ export default {
         });
     },
     updateTask({ commit }, task) {
-      HTTP().patch(`tasks/${task.id}`, task)
+      return HTTP().patch(`tasks/${task.id}`, task)
         .then(() => {
           commit('setTaskEditMode', {
             task,
@@ -32,7 +32,7 @@ export default {
         });
     },
     createTask({ commit, state, rootState }) {
-      HTTP().post(`projects/${rootState.projects.selectedProjectId}/tasks`, {
+      return HTTP().post(`projects/${rootState.projects.selectedProjectId}/tasks`, {
         description: state.description,
       })
         .then(({ data }) => {
@@ -43,7 +43,7 @@ export default {
         });
     },
     deleteSelectedTask({ state, commit }) {
-      HTTP().delete(`tasks/${state.taskToDeleteId}`)
+      return HTTP().delete(`tasks/${state.taskToDeleteId}`)
         .then(() => {
           commit('deleteTask', state.taskToDeleteId);
         })

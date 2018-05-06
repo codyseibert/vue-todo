@@ -81,6 +81,9 @@ export default {
     ...mapActions('tasks', [
       'fetchTasks',
     ]),
+    ...mapActions('projects', [
+      'selectFirstProject',
+    ]),
     ...mapMutations('projects', [
       'setTitle',
       'setConfirmDisplayed',
@@ -88,7 +91,6 @@ export default {
       'setSelectedProjectId',
       'setProjectEditMode',
       'setProjectTitle',
-      'selectFirstProject',
     ]),
   },
   mounted() {
